@@ -1205,6 +1205,9 @@ void odhcpd_reload(void)
 	if (!uci)
 		return;
 
+	if (config.uci_path)
+			uci_set_confdir(uci, config.uci_path);
+
 	vlist_update(&leases);
 	avl_for_each_element(&interfaces, i, avl)
 		clean_interface(i);

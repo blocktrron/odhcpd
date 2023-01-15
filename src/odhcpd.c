@@ -55,6 +55,7 @@ static void print_usage(const char *app)
 {
 	printf(
 	"== %s Usage ==\n\n"
+	"  -c           define UCI config path\n"
 	"  -h, --help   Print this help\n"
 	"  -l level     Specify log level 0..7 (default %d)\n",
 		app, config.log_level
@@ -78,8 +79,13 @@ int main(int argc, char **argv)
 	openlog("odhcpd", LOG_PERROR | LOG_PID, LOG_DAEMON);
 	int opt;
 
-	while ((opt = getopt(argc, argv, "hl:")) != -1) {
+	config.uci_path = NULL;
+
+	while ((opt = getopt(argc, argv, "c:hl:")) != -1) {
 		switch (opt) {
+		case 'd':
+			config.uci_path = optarg;
+			break;
 		case 'h':
 			print_usage(argv[0]);
 			return 0;

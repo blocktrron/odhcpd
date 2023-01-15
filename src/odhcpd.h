@@ -161,6 +161,7 @@ struct config {
 	bool main_dhcpv4;
 	char *dhcp_cb;
 	char *dhcp_statefile;
+	char *uci_path;
 	int log_level;
 };
 
